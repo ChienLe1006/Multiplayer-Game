@@ -9,8 +9,7 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        line.positionCount = 2;
-        Debug.Log("kekw"); 
+        line.positionCount = 2; 
     }
 
     private void Update()
