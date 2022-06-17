@@ -32,7 +32,7 @@ public class GameController : MonoBehaviour
         else
         {
             distance = Vector2.Distance(players[0].transform.position, players[1].transform.position);
-            if (distance < 5)
+            if (distance < 8)
             {
                 line.gameObject.SetActive(true);
                 line.SetPosition(0, players[0].transform.position);
