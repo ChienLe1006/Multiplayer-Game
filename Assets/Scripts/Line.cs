@@ -26,5 +26,6 @@ public class Line : MonoBehaviour
     {
         transform.position = (line.GetPosition(0) + line.GetPosition(1)) / 2;
         myCol.size = new Vector2(GameController.instance.distance, myCol.size.y);
+        transform.eulerAngles = new Vector3(0, 0, GameController.instance.angle);
     }
 }
