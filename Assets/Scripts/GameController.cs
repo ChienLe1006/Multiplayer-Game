@@ -43,5 +43,7 @@ public class GameController : MonoBehaviour
                 line.gameObject.SetActive(false);
             }
         }
+
+        Debug.Log(Vector3.Angle((players[0].transform.position - players[1].transform.position), Vector3.right)); 
     }
 }
