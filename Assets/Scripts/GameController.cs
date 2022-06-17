@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    public static GameController instance;
     [SerializeField] private LineRenderer line;
     private GameObject[] players;
+    public float distance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
 
     private void Start()
     {
@@ -21,7 +31,7 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            float distance = Vector2.Distance(players[0].transform.position, players[1].transform.position);
+            distance = Vector2.Distance(players[0].transform.position, players[1].transform.position);
             if (distance < 5)
             {
                 line.gameObject.SetActive(true);
