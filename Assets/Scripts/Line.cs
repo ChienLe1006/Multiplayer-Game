@@ -28,4 +28,16 @@ public class Line : MonoBehaviour
         myCol.size = new Vector2(GameController.instance.distance, myCol.size.y);
         transform.eulerAngles = new Vector3(0, 0, GameController.instance.angle);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            Enemy enemy = collision.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.Explode();
+            }
+        }
+    }
 }

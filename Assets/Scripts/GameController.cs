@@ -15,6 +15,10 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject originEnemy;
     [SerializeField] private GameObject[] enemySpawnPoints;
 
+    private List<GameObject> explosionFxs;
+    private int fxPool = 20;
+    [SerializeField] private GameObject originFx;
+
     private void Awake()
     {
         if (instance == null)
@@ -27,6 +31,7 @@ public class GameController : MonoBehaviour
     {
         line.positionCount = 2;
         SetEnemyPool();
+        SetExplosionFxPool();
     }
 
     private void Update()
@@ -86,11 +91,40 @@ public class GameController : MonoBehaviour
         {
             if (!enemy.activeInHierarchy)
             {
+                enemy.SetActive(true);
                 return enemy;
             }
         }
         GameObject obj = Instantiate(originEnemy);
+        obj.SetActive(true);
         enemies.Add(obj);
+        return obj;
+    }
+
+    private void SetExplosionFxPool()
+    {
+        explosionFxs = new List<GameObject>();
+        for (int i = 0; i < fxPool; i++)
+        {
+            GameObject fx = Instantiate(originFx);
+            fx.SetActive(false);
+            enemies.Add(fx);
+        }
+    }
+
+    public GameObject GetExplosionFxPool()
+    {
+        foreach (GameObject fx in explosionFxs)
+        {
+            if (!fx.activeInHierarchy)
+            {
+                fx.SetActive(true);
+                return fx;
+            }
+        }
+        GameObject obj = Instantiate(originFx);
+        obj.SetActive(true);
+        explosionFxs.Add(obj);
         return obj;
     }
 }
